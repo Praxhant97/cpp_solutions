@@ -13,27 +13,30 @@ const int MOD = 1e9 + 7;
 const int INF = 1e9;
 
 void solve() {
-    int n;
-    if (!(cin>>n)) return;
-    string x;
-    cin>>x;
+ int n;
+ cin>>n;
+ string s;
+ cin>>s;
+ if(n%2!=0 && s[0]=='b'){
+    cout<<"NO"<<endl;
+    return;
 
-    if (n % 2 != 0) {
-        if (x[0]=='b') {
-            cout << "NO"<<endl;
-            return;
-        }
+
+ }
+ int st;
+ if(n%2!=0){
+    st=1;
+ }else{
+    st=0;
+ }
+ for(int i=st;i<n-1;i+=2){
+    if(s[i]==s[i+1] && s[i]!='?' && s[i+1]!='?'){
+        cout<<"NO"<<endl;
+        return;
     }
+ }
+ cout<<"YES"<<endl;
 
-    int startidx = n % 2; 
-
-    for (int i = startidx; i < n;i+=2) {
-        if (x[i]!='?'&& x[i+1]!='?' && x[i] == x[i+1]) {
-            cout << "NO"<<endl;
-            return;
-        }
-    }
-    cout << "YES"<<endl;
 }
 int main() {
     ios_base::sync_with_stdio(0);

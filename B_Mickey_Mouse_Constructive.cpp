@@ -13,24 +13,38 @@ const int MOD = 1e9 + 7;
 const int INF = 1e9;
 
 void solve() {
-    ll n;
-    cin>>n;
-    vector<ll>arr(n);
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
+    int x, y;
+    cin >> x >> y;
+    
+    if (x == y) {
+        cout << 1 << "\n";
+        for (int i = 0; i < x; i++) cout << 1 << " ";
+        for (int i = 0; i < y; i++) cout << -1 << " ";
+        cout << "\n";
+        return;
     }
-    ll sum=0;
-    ll count=0;
-    for(int i=0;i<n;i++){
-        if(arr[i]>0){
-            count++;
+    
+    ll S = abs(x - y);
+    ll ans = 0;
+    for (ll i = 1; i * i <= S; i++) {
+        if (S % i == 0) {
+            ans++;
+            if (i * i != S) {
+                ans++;
+            }
         }
-        sum+=arr[i];
     }
-    ll NewSum=sum-count;
-    ll sub=n-1-NewSum;
-    ll x=0;
-    cout<<count-max(x,sub)<<endl;
+    
+    cout << (ans % 676767677) << "\n";
+    if (x > y) {
+        for (int i = 0; i < y; i++) cout << -1 << " ";
+        for (int i = 0; i < x; i++) cout << 1 << " ";
+        cout << "\n";
+    } else {
+        for (int i = 0; i < x; i++) cout << 1 << " ";
+        for (int i = 0; i < y; i++) cout << -1 << " ";
+        cout << "\n";
+    }
 }
 
 int main() {
